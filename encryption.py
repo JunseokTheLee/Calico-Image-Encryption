@@ -1,7 +1,9 @@
 from PIL import Image
-im = Image.open('asdf.jpeg')
 
 
+im = Image.open('enctext.png')
+
+colors = []
 
 def proc(im, key1, key2, key3, keyk):
     pixelMap = im.load()
@@ -65,10 +67,10 @@ def proc(im, key1, key2, key3, keyk):
         for j in range(img.size[1]):
             a = pixelsNew[i, j]
             b= pixelMap[i,j]
-            c= ((b[0] + a[0]) + key[0] - key[1] - key[2],b[1] + a[1]- key[0] + key[1] - key[2], (b[2] + a[2])- key[0] - key[1] + key[2])
-            
+            c= (abs(abs(b[0] - a[0])  - abs(key[1] - key[2])),abs(abs(b[1] - a[1])- abs(key[0]  - key[2])), abs(abs(b[2] - a[2])- abs(key[0] - key[1])) )
+            pixelsNew2[i,j] = c
     return img2
 
 
 
-proc(proc(im, 125, 229, 456, 3), 256, 333, 425, 2).show()
+proc(proc(proc(proc(im, 125, 229, 99, 3), 200, 150, 190, 2), 56, 231, 111, 4), 103, 42, 250, 5).show()
